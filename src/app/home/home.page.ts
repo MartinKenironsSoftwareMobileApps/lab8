@@ -14,10 +14,13 @@ import { Storage } from '@ionic/storage-angular';
 })
 export class HomePage {
   myStatus:string = "";
+  myPresidents:Array<string>=[];
   constructor(private storage:Storage) {}
 
   async ionViewWillEnter(){
     await this.storage.create();
     this.myStatus = await this.storage.get('status');
+    this.myPresidents = await this.storage.get('pres');
+    console.log(this.myPresidents);
   }
 }

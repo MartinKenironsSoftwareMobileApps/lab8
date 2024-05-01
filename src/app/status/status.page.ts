@@ -17,6 +17,7 @@ import { Router } from '@angular/router';
 })
 export class StatusPage implements OnInit {
 myStatus:String = "";
+presidents:Array<string>=["Trump", "obama", "Bush"];
   constructor(private storage:Storage, private router:Router) { }
 
  async ionViewWillEnter(){
@@ -36,6 +37,20 @@ myStatus:String = "";
         console.log(error);
       }
     );
+
+    await this.storage.set("pres",this.presidents)
+    .then(
+      ()=>{
+        this.router.navigate(['/home']);
+      }
+    )
+    .catch(
+      (error)=>{
+        console.log(error);
+      }
+    );
+
+
   }
 
   ngOnInit() {
